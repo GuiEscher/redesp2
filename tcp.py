@@ -3,7 +3,7 @@ import random
 from tcputils import *
 import time
 
-# p2 redes
+# p2 redes 2024/2
 class Servidor:
     def __init__(self, rede, porta):
         # Inicializa o servidor com a rede e a porta especificada

@@ -72,6 +72,7 @@ class Servidor:
             )
 
 
+# config conn RDT
 class ConexaoRDT:
     def __init__(self, servidor, id_conexao):
         # Inicializa uma nova conexão
@@ -153,10 +154,12 @@ class ConexaoRDT:
 
         self.callback(self, payload)
 
+    # Registra recebedor
     def registrar_recebedor(self, callback):
 
         self.callback = callback
 
+    # envio de dados
     def enviar(self, dados):
 
         (dst_addr, dst_port, src_addr, src_port) = self.id_conexao
@@ -187,6 +190,7 @@ class ConexaoRDT:
         self.dados_restantes = bytearray()
         self.dados_restantes.extend(buffer)
 
+    # timeout function
     def timeout(self):
 
         if self.not_check:
@@ -204,6 +208,7 @@ class ConexaoRDT:
 
             self.not_check[0][2] = None
 
+    # interval function
     def intervalo_timeout_function(self, tempo_recepcao_ack):
 
         tempo_envio_seq = self.not_check[0][2]
@@ -228,6 +233,7 @@ class ConexaoRDT:
         self.TimeoutInterval = self.EstimatedRTT + 4 * self.DevRTT
         return True
 
+    # fechamento
     def fechar(self):
 
         (dst_addr, dst_port, src_addr, src_port) = self.id_conexao
